@@ -1,28 +1,32 @@
-﻿# STREAMLIT UI
+# STREAMLIT & ENV
 streamlit
+python-dotenv
+
+# GOOGLE GEMINI SDK
+langchain-google-genai==2.1.5
+google-ai-generativelanguage==0.6.18
+google-api-core
+google-auth
 
 # LANGCHAIN & VECTOR DB
 langchain
-langchain-google-genai==2.1.5
+langchain-cohere
 faiss-cpu
 
-
-# GOOGLE GEMINI SDK (VERSI COCOK)
-google-ai-generativelanguage==0.6.18
-
 # LLM TOOLS
-openai
 pandas
 scikit-learn
+openai
+tiktoken==0.5.1  # versi stabil, compatible Python 3.10
 
-# ENVIRONMENT VARIABLE HANDLING
-python-dotenv
-# Untuk membaca file PDF
+# PDF HANDLING
 PyPDF2
+pdfplumber
 
-# Untuk menghitung token (digunakan di callback handler)
-tiktoken
-
-# Library terjemahan resmi dari Google Cloud
-google-cloud-translate
+# TRANSLATOR & SEARCH
+deep-translator
 googlesearch-python==1.1
+
+# TAMBAHAN
+pydantic<3.0.0
+protobuf<5.0.0
