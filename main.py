@@ -50,13 +50,6 @@ def get_google_search_results(query: str) -> str:
         return f"Terjadi kesalahan saat melakukan pencarian Google: {str(e)}"
 
 def run_agent(user_input: str, retriever: FaissRetriever, pdf_content: Optional[str] = None) -> str:
-    """
-    Menjalankan chatbot dengan pendekatan hybrid:
-    1. Coba jawab dari dokumen (jika tersedia)
-    2. Jika tidak relevan → cari dari FAISS (database)
-    3. Jika tetap tidak ditemukan → fallback ke Google Search
-    """
-
     gemini_handler = GeminiCallbackHandler()
     llm = ChatGoogleGenerativeAI(
         model="gemini-1.5-flash",
@@ -77,8 +70,7 @@ def run_agent(user_input: str, retriever: FaissRetriever, pdf_content: Optional[
 
             Pertanyaan: {user_input}
             """
-            response = llm.invoke(prompt)
-            return str(getattr(response, "content", response))
+            return str(llm.invoke(prompt).content)
 
         retriever_result = retriever.search(user_input, k=3)
         context = "\n".join([doc.page_content for doc in retriever_result]) if retriever_result else ""
@@ -93,11 +85,10 @@ def run_agent(user_input: str, retriever: FaissRetriever, pdf_content: Optional[
 
             Pertanyaan: {user_input}
             """
-            response = llm.invoke(prompt)
-            return str(getattr(response, "content", response))
+            return str(llm.invoke(prompt).content)
 
         st.info("🔍 Jawaban tidak ditemukan di database. Mencoba mencari dari internet...")
-        return str(get_google_search_results(user_input))
+        return get_google_search_results(user_input)
 
     except Exception as e:
         return f"❌ Terjadi kesalahan: {str(e)}"
