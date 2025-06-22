@@ -1,32 +1,26 @@
-# STREAMLIT & ENV
-streamlit
-python-dotenv
-
-# GOOGLE GEMINI SDK
+# Core packages
+streamlit==1.46.0
+python-dotenv==1.1.0
 langchain-google-genai==2.1.5
 google-ai-generativelanguage==0.6.18
-google-api-core
-google-auth
+google-api-core==2.25.1
+google-auth==2.40.3
 
-# LANGCHAIN & VECTOR DB
-langchain
-langchain-cohere
-faiss-cpu
+# Updated tiktoken and googlesearch-python for compatibility
+tiktoken==0.5.1  # Keep this version
+requests>=2.27  # Modify to meet tiktoken's requirement
 
-# LLM TOOLS
-pandas
-scikit-learn
-openai
-tiktoken==0.5.1  # versi stabil, compatible Python 3.10
-
-# PDF HANDLING
-PyPDF2
-pdfplumber
-
-# TRANSLATOR & SEARCH
-deep-translator
-googlesearch-python==1.1
-
-# TAMBAHAN
+# Other dependencies
+langchain==0.3.26
+langchain-cohere==0.4.4
+faiss-cpu==1.11.0
+pandas==2.3.0
+scikit-learn==1.7.0
+openai==1.90.0
+PyPDF2==3.0.1
+pdfplumber==0.11.7
+deep-translator==1.11.4
+beautifulsoup4==4.9.3
 pydantic<3.0.0
 protobuf<5.0.0
+filetype<2.0.0,>=1.2.0
